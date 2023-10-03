@@ -98,10 +98,10 @@ class DataValidator:
             result_file.write(f'Unsuccessful Expectations: {unsuccessful_expectations}\n')
             result_file.write(f'Success Percent: {(successful_expectations / evaluated_expectations) * 100:.2f}%')
 
-            for field_name, exp_config in validation_results.items():
+            for field_name, expectation in validation_results.items():
                 result_file.write(f'\n\nField Name: {field_name}')
 
-                for exp_code, unexpected_values in exp_config.items():
+                for exp_code, unexpected_values in expectation.items():
                     count = sum(unexpected_values.values())
                     percentage = (count / total_rows) * 100
                     result_file.write(f'\nExpectation: {exp_code} - {self.expectations[exp_code]}')
