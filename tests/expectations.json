@@ -1,0 +1,24 @@
+{
+  "suite": {
+    "name": "myexpectations",
+    "expectations": {
+      "first_exp_code": {
+        "expect_values": {
+          "fld_name": "warranty_duration",
+          "values": [
+            "A",
+            "B",
+            "C"
+          ]
+        }
+      },
+      "second_exp_code": {
+        "expect_range": {
+          "fld_name": "amount",
+          "range_lwr": 1,
+          "range_upr": 10
+        }
+      }
+    }
+  }
+}

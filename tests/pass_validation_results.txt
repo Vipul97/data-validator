@@ -1,0 +1,19 @@
+Overview:
+Expectation Suite: myexpectations
+Status: Succeeded
+
+Statistics:
+Evaluated Expectations: 2
+Successful Expectations: 2
+Unsuccessful Expectations: 0
+Success Percent: 100.00%
+
+Field Name: warranty_duration
+Expectation: first_exp_code - Values must belong to this set: ['A', 'B', 'C'].
+Status: Succeeded
+Result: 0 unexpected values found. 0.00% of 5 total rows.
+
+Field Name: amount
+Expectation: second_exp_code - Values must be greater than or equal to 1 and less than or equal to 10.
+Status: Succeeded
+Result: 0 unexpected values found. 0.00% of 5 total rows.
