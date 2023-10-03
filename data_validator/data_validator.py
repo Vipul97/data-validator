@@ -64,7 +64,8 @@ class DataValidator:
             if exp_type == 'expect_values':
                 self.expectations[exp_code] = ExpectValues(exp_params['fld_name'], exp_params['values'])
             elif exp_type == 'expect_range':
-                self.expectations[exp_code] = ExpectRange(exp_params['fld_name'], exp_params['range_lwr'], exp_params['range_upr'])
+                self.expectations[exp_code] = ExpectRange(exp_params['fld_name'], exp_params['range_lwr'],
+                                                          exp_params['range_upr'])
 
     def validate(self):
         with open(self.data_file_path, 'r') as data_file, open(self.result_file_path, 'w') as result_file:
@@ -100,16 +101,17 @@ class DataValidator:
             for field_name, exp_config in validation_results.items():
                 result_file.write(f'\n\nField Name: {field_name}')
 
-                for exp_code, results in exp_config.items():
-                    count = sum(results.values())
+                for exp_code, unexpected_values in exp_config.items():
+                    count = sum(unexpected_values.values())
                     percentage = (count / total_rows) * 100
                     result_file.write(f'\nExpectation: {exp_code} - {self.expectations[exp_code]}')
-                    result_file.write(f'\nStatus: {"Failed" if results else "Succeeded"}')
+                    result_file.write(f'\nStatus: {"Failed" if unexpected_values else "Succeeded"}')
                     result_file.write(
                         f'\nResult: {count} unexpected values found. {percentage:.2f}% of {total_rows} total rows.')
 
-                    if results:
-                        for unexpected_value, count in sorted(results.items(), key=lambda x: x[1], reverse=True):
+                    if unexpected_values:
+                        for unexpected_value, count in sorted(unexpected_values.items(), key=lambda x: x[1],
+                                                              reverse=True):
                             result_file.write(f'\n- Unexpected Value: {unexpected_value}, Count: {count}')
 
 
